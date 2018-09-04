@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
-public class Home {
+public class UserController {
 
-  public Home() {
+  public UserController() {
   }
 
   @GetMapping("/list")
@@ -39,7 +39,7 @@ public class Home {
 
   @PutMapping("edit-user/{id}")
   public String editUser(@PathVariable(value = "id") String userId) {
-    return "getUser";
+    return "redirect:/list";
   }
 
 

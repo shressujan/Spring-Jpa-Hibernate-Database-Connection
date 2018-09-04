@@ -1,15 +1,18 @@
 package com.database.connection.domain;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "User")
+@Table(name = "User_temp")
 public class User {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "idUser")
   private int userId;
 
@@ -22,12 +25,18 @@ public class User {
   @Column(name = "email")
   private String email;
 
-  @Column(name = "contact")
   private int contact;
 
-  @ManyToOne
-  @JoinColumn(name = "Address_idAddress")
-  private Address address;
+  private String address1;
+
+  private String address2;
+
+  private String city;
+
+  private String state;
+
+  @Column(name = "zipcode")
+  private int zipCode;
 
   public String getUsername() {
     return username;
@@ -53,22 +62,48 @@ public class User {
     this.contact = contact;
   }
 
-  public Address getAddress() {
-    return address;
+  public String getAddress1() {
+    return address1;
   }
 
-  public void setAddress(Address address) {
-    this.address = address;
+  public void setAddress1(String address1) {
+    this.address1 = address1;
+  }
+
+  public String getAddress2() {
+    return address2;
+  }
+
+  public void setAddress2(String address2) {
+    this.address2 = address2;
+  }
+
+  public String getCity() {
+    return city;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
+  }
+
+  public String getState() {
+    return state;
+  }
+
+  public void setState(String state) {
+    this.state = state;
+  }
+
+  public int getZipCode() {
+    return zipCode;
+  }
+
+  public void setZipCode(int zipCode) {
+    this.zipCode = zipCode;
   }
 
   @Override
   public String toString() {
-    return "User{" +
-        "userId=" + userId +
-        ", username='" + username + '\'' +
-        ", email=" + email +
-        ", contact=" + contact +
-        ", address=" + address +
-        '}';
+    return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
   }
 }
