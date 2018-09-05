@@ -38,6 +38,10 @@ public class User {
   @Column(name = "zipcode")
   private int zipCode;
 
+  public int getUserId() {
+    return userId;
+  }
+
   public String getUsername() {
     return username;
   }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,9 +32,11 @@
   <br>
   <div class="p-3 mb-2 bg-primary text-white font-weight-bold text-center">List of Users</div>
   <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action">
-      Cras justo odio
-    </a>
+    <c:forEach items="${users}" var="user">
+      <a href="/get-User/${user.getUserId()}" class="list-group-item list-group-item-action">
+        ${user.getUsername()}
+      </a>
+    </c:forEach>
   </div>
 </body>
 </html>

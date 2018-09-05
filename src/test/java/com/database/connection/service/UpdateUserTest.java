@@ -5,24 +5,24 @@ import com.database.connection.domain.User;
 import com.database.connection.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.mockito.Mockito.*;
+import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class CreateUserTest {
+public class UpdateUserTest {
 
   @Mock
   private UserRepository userRepository;
 
-  private UserServiceImpl userService;
+  private UserService userService;
 
   @Before
   public void creatMock() {
@@ -33,7 +33,7 @@ public class CreateUserTest {
   public User defaultUser() {
     User user = Mockito.mock(User.class);
     user.setUsername("sujan");
-    user.setEmail("snoop@yahoo.com");
+    user.setEmail("hello@yahoo.com");
     user.setContact(1112325467);
     user.setAddress1("somewhere dr");
     user.setAddress2("some apt");
@@ -44,9 +44,9 @@ public class CreateUserTest {
     return user;
   }
 
-  @Test
-  public void createUser_Valid() {
 
+  @Test
+  public void updateUserTest_Valid() {
     UserDao userDao = new UserDao();
     userDao.setUsername("sujan");
     userDao.setEmail("snoop@yahoo.com");
@@ -57,14 +57,20 @@ public class CreateUserTest {
     userDao.setState("State");
     userDao.setZipCode(34231);
 
-    User user = defaultUser();
+    Optional<User> userOptional = Optional.ofNullable(defaultUser());
+    User user = userOptional.get();
+
+    when(userRepository.findById(any())).thenReturn(userOptional);
+
+    user.setEmail(userDao.getEmail()); /*Updating the email address*/
+
     when(userRepository.save(user)).then((Answer<User>) invocation -> {
       Object[] args = invocation.getArguments();
       return (User) args[0];
     });
-    userService.createUser(userDao);
 
-    verify(userRepository.save(user));
+    userService.updateUser(userDao, user.getUserId());
+
+    verify(userRepository).save(user);
   }
-
 }
