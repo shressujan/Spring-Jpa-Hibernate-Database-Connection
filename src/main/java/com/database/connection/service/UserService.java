@@ -10,7 +10,7 @@ public interface UserService {
   void createUser(@NotNull UserDao userDao);
   List<User> findAllUsers();
   User findUser(@NotNull int userId);
-  List<User> findUsersByUsername(@NotNull String username);
+  List<User> findUsersByUsername(String username);
   void updateUser(@NotNull UserDao userDao, int userId);
   void deleteUser(@NotNull int userId);
 

@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -30,7 +31,7 @@ public class DeleteUserTest {
     User user = Mockito.mock(User.class);
     user.setUsername("sujan");
     user.setEmail("something@yahoo.com");
-    user.setContact(1112325467);
+    user.setContact(BigInteger.valueOf(1112325467));
     user.setAddress1("somewhere dr");
     user.setAddress2("some apt");
     user.setCity("city");

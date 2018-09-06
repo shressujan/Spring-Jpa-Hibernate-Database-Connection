@@ -6,13 +6,14 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "User_temp")
 public class User {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY) /*always use IDENTITY because it will use the database resource to assign primary key*/
   @Column(name = "idUser")
   private int userId;
 
@@ -25,7 +26,7 @@ public class User {
   @Column(name = "email")
   private String email;
 
-  private int contact;
+  private BigInteger contact;
 
   private String address1;
 
@@ -37,6 +38,20 @@ public class User {
 
   @Column(name = "zipcode")
   private int zipCode;
+
+  public User() {
+  }
+
+  public User(@NotNull String username, @NotNull @Email String email, BigInteger contact, String address1, String address2, String city, String state, int zipCode) {
+    this.username = username;
+    this.email = email;
+    this.contact = contact;
+    this.address1 = address1;
+    this.address2 = address2;
+    this.city = city;
+    this.state = state;
+    this.zipCode = zipCode;
+  }
 
   public int getUserId() {
     return userId;
@@ -58,12 +73,12 @@ public class User {
     this.email = email;
   }
 
-  public int getContact() {
-    return contact;
+  public void setContact(BigInteger contact) {
+    this.contact = contact;
   }
 
-  public void setContact(int contact) {
-    this.contact = contact;
+  public BigInteger getContact() {
+    return contact;
   }
 
   public String getAddress1() {

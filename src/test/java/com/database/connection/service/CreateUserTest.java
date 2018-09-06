@@ -12,6 +12,8 @@ import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigInteger;
+
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -34,7 +36,7 @@ public class CreateUserTest {
     User user = Mockito.mock(User.class);
     user.setUsername("sujan");
     user.setEmail("snoop@yahoo.com");
-    user.setContact(1112325467);
+    user.setContact(BigInteger.valueOf(1112325467));
     user.setAddress1("somewhere dr");
     user.setAddress2("some apt");
     user.setCity("city");
@@ -50,7 +52,7 @@ public class CreateUserTest {
     UserDao userDao = new UserDao();
     userDao.setUsername("sujan");
     userDao.setEmail("snoop@yahoo.com");
-    userDao.setContact(1112325467);
+    userDao.setContact(BigInteger.valueOf(1112325467));
     userDao.setAddress1("somewhere dr");
     userDao.setAddress2("some apt");
     userDao.setCity("city");

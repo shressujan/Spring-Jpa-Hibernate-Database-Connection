@@ -2,7 +2,7 @@
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_1.xsd"
-                 version="2.1">
+                 version="2.0">
 
     <named-native-query name="getUsers" result-class="com.database.connection.domain.User">
         <query><![CDATA[
@@ -10,11 +10,11 @@
             ]]></query>
     </named-native-query>
 
-    <named-native-query name="addUser" result-class="com.database.connection.domain.User">
-        <query><![CDATA[
-            insert into User (username, email, contact, Address_idAddress)
-            value (:username, :email, :contact, :idAddress)
-            ]]></query>
+    <named-native-query name="findUsersByUsername" result-class="com.database.connection.domain.User">
+        <query>
+            select * from User_temp u
+              where u.username = ?;
+            </query>
     </named-native-query>
 
 </entity-mappings>

@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -34,7 +35,7 @@ public class UpdateUserTest {
     User user = Mockito.mock(User.class);
     user.setUsername("sujan");
     user.setEmail("hello@yahoo.com");
-    user.setContact(1112325467);
+    user.setContact(BigInteger.valueOf(1112325467));
     user.setAddress1("somewhere dr");
     user.setAddress2("some apt");
     user.setCity("city");
@@ -50,7 +51,7 @@ public class UpdateUserTest {
     UserDao userDao = new UserDao();
     userDao.setUsername("sujan");
     userDao.setEmail("snoop@yahoo.com");
-    userDao.setContact(1112325467);
+    userDao.setContact(BigInteger.valueOf(1112325467));
     userDao.setAddress1("somewhere dr");
     userDao.setAddress2("some apt");
     userDao.setCity("city");

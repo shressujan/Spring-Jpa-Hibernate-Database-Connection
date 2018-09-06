@@ -3,22 +3,15 @@ package com.database.connection.dao;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import java.math.BigInteger;
 
 public class UserDao {
 
-  @NotNull
   private String username;
 
-  @Email
-  private String email;
+  private BigInteger contact;
 
-  private int contact;
+  private String email;
 
   private String address1;
 
@@ -46,11 +39,11 @@ public class UserDao {
     this.email = email;
   }
 
-  public int getContact() {
+  public BigInteger getContact() {
     return contact;
   }
 
-  public void setContact(int contact) {
+  public void setContact(BigInteger contact) {
     this.contact = contact;
   }
 

@@ -29,18 +29,10 @@ public class UserServiceImpl implements UserService{
   @Override
   public void createUser(@NotNull UserDao userDao) {
     logger.info("Attempting to create the user: {}", userDao);
-    User user = new User();
-    user.setUsername(userDao.getUsername());
-    user.setEmail(userDao.getEmail());
-    user.setContact(userDao.getContact());
-    user.setAddress1(userDao.getAddress1());
-    user.setAddress2(userDao.getAddress2());
-    user.setCity(userDao.getCity());
-    user.setState(userDao.getState());
-    user.setZipCode(userDao.getZipCode());
+    User user = new User(userDao.getUsername(), userDao.getEmail(), userDao.getContact(), userDao.getAddress1(), userDao.getAddress2(), userDao.getCity(), userDao.getState(), userDao.getZipCode());
 
-    logger.info("User with id: {} created", user.getUserId());
     userRepository.save(user);
+    logger.info("User with id: {} created", user.getUserId());
   }
 
   @Override
@@ -65,8 +57,8 @@ public class UserServiceImpl implements UserService{
   }
 
   @Override
-  public List<User> findUsersByUsername(@NotNull String username) {
-    return null;
+  public List<User> findUsersByUsername(String username) {
+    return userRepository.findUsersByUsername(username);
   }
 
   @Override
@@ -82,8 +74,9 @@ public class UserServiceImpl implements UserService{
     user.setState(userDao.getState());
     user.setZipCode(userDao.getZipCode());
 
-    logger.info("User with id: {} updated", user.getUserId());
     userRepository.save(user);
+
+    logger.info("User with id: {} updated", user.getUserId());
   }
 
   @Override
