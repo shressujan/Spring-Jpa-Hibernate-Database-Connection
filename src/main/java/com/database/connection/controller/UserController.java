@@ -36,7 +36,7 @@ public class UserController {
   }
 
   @PostMapping("/add-user")
-  public String addUserSubmit(UserDao userDao) {
+  public String addUserSubmit(@ModelAttribute UserDao userDao) {
 
     userService.createUser(userDao);
     return "redirect:/list";
